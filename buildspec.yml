@@ -7,7 +7,7 @@ phases:
   build:
     commands:
       - echo "build phase"
-      - docker tag -t my-angular-app:latest . 
+      - docker build -t my-angular-app:latest . 
   post_build:
     commands:
     - docker tag my-angular-app:latest ${DOCKERHUB_USERNAME}/my-angular-app:latest 
