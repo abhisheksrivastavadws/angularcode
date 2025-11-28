@@ -5,7 +5,7 @@ env:
   #   DOCKERHUB_USERNAME: dockerhub:user
   parameter-store:
     DOCKERHUB_TOKEN: /dockerhub/token
-    DOCKERHUB_USERNAME: /dockerhub/user
+    DOCKERHUB_USERNAME: /dockerhub/username
 phases: 
   pre_build:
     commands:
