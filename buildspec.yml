@@ -1,9 +1,11 @@
 version: 0.2 
 env:
+  variable:
+    ECR_REPO: "800990441904.dkr.ecr.us-east-1.amazonaws.com/roy/angular"
   # secrets-manager:
   #   DOCKERHUB_TOKEN: dockerhub:token
   #   DOCKERHUB_USERNAME: dockerhub:user
-  parameter-store:
+  systemsmanager:
     DOCKERHUB_TOKEN: /dockerhub/token
     DOCKERHUB_USERNAME: /dockerhub/username
 phases: 
@@ -11,6 +13,10 @@ phases:
     commands:
       - echo "hey its pre_build phase"
       - echo ${DOCKERHUB_TOKEN} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin 
+      # login into aws ecr 
+      - AWS_MAIN_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+      - aws ecr get-login-password | docker login -u AWS --password-stdin ${AWS_MAIN_URI}
+      - ecr_image = ${ECR_REPO}/my-angular-app:latest
   build:
     commands:
       - echo "build phase"
@@ -19,3 +25,6 @@ phases:
     commands:
     - docker tag my-angular-app:latest ${DOCKERHUB_USERNAME}/my-angular-app:latest 
     - docker push ${DOCKERHUB_USERNAME}/my-angular-app:latest 
+    # Image pushed to ecr 
+    - docker tag my-angular-app:latest  ${ECR_REPO}/my-angular-app:latest
+    - docker push ${ECR_REPO}/my-angular-app:latest
