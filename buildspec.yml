@@ -1,6 +1,6 @@
 version: 0.2 
 env:
-  variable:
+  variables:
     ECR_REPO: "800990441904.dkr.ecr.us-east-1.amazonaws.com/roy/angular"
   # secrets-manager:
   #   DOCKERHUB_TOKEN: dockerhub:token
