@@ -28,5 +28,5 @@ phases:
     - docker tag my-angular-app:latest ${DOCKERHUB_USERNAME}/my-angular-app:latest 
     - docker push ${DOCKERHUB_USERNAME}/my-angular-app:latest 
     # Image pushed to ecr 
-    - docker tag my-angular-app:latest ${ECR_REPO}/my-angular-app:latest
-    - docker push ${ECR_REPO}/my-angular-app:latest
+    - docker tag my-angular-app:latest ${ECR_REPO}:latest
+    - docker push ${ECR_REPO}:latest
