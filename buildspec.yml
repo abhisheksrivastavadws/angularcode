@@ -5,7 +5,7 @@ env:
   # secrets-manager:
   #   DOCKERHUB_TOKEN: dockerhub:token
   #   DOCKERHUB_USERNAME: dockerhub:user
-  systemsmanager:
+  parameter-store:
     DOCKERHUB_TOKEN: /dockerhub/token
     DOCKERHUB_USERNAME: /dockerhub/username
 phases: 
