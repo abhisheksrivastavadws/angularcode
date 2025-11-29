@@ -17,10 +17,11 @@ phases:
       - echo "DOCKER LOGIN SUCCESSSFUL"
       # - AWS_MAIN_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
       - aws ecr get-login-password | docker login -u AWS --password-stdin ${ECR_REPO}
-      - ecr_image = ${ECR_REPO}/my-angular-app:latest
+      - ecr_image=${ECR_REPO}/my-angular-app:latest
   build:
     commands:
       - echo "build phase"
+      - echo ${ecr_image}
       - docker build -t my-angular-app:latest . 
   post_build:
     commands:
