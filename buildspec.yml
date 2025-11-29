@@ -14,6 +14,7 @@ phases:
       - echo "hey its pre_build phase"
       - echo ${DOCKERHUB_TOKEN} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin 
       # login into aws ecr 
+      - echo "DOCKER LOGIN SUCCESSSFUL"
       - AWS_MAIN_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
       - aws ecr get-login-password | docker login -u AWS --password-stdin ${AWS_MAIN_URI}
       - ecr_image = ${ECR_REPO}/my-angular-app:latest
